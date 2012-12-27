@@ -1,0 +1,18 @@
+#OSX Generated Files
+.DS_Store
+
+#Build Directories
+bin/
+gen/
+out/
+
+#IntelliJ Files
+.idea/
+*.iml
+
+#Eclipse Files
+.project
+.classpath
+
+#Machine Specific
+local.properties
