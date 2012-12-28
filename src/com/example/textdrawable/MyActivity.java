@@ -137,7 +137,7 @@ public class MyActivity extends Activity implements Runnable {
 
         /*
          * Wrap a simple TextDrawable in a ClipDrawable to animate.  One convenient
-         * advantage of ImageView is we can call setLevel() on the view itself to affect
+         * advantage of ImageView is we can call setImageLevel() on the view itself to affect
          * the Drawable content.
          */
         d = new TextDrawable(this);
