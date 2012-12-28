@@ -26,22 +26,27 @@ package com.example.textdrawable;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Path;
+import android.graphics.drawable.ClipDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Layout;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import com.example.textdrawable.drawable.TextDrawable;
 
-public class MyActivity extends Activity {
+public class MyActivity extends Activity implements Runnable {
     //Row One
     ImageView mImageOne, mImageTwo;
     //Row Two
     ImageView mImageThree, mImageFour;
     //Row Three
-    EditText mEditText;
+    ImageView mImageFive;
     //Row Four
+    EditText mEditText;
+    //Row Five
     Button mButton;
 
     @Override
@@ -53,10 +58,35 @@ public class MyActivity extends Activity {
         mImageTwo = (ImageView) findViewById(R.id.image2);
         mImageThree = (ImageView) findViewById(R.id.image3);
         mImageFour = (ImageView) findViewById(R.id.image4);
+        mImageFive = (ImageView) findViewById(R.id.image5);
         mEditText = (EditText) findViewById(R.id.edittext1);
         mButton = (Button) findViewById(R.id.button1);
 
         loadDrawables();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Start the animation
+        mAnimator.post(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //Stop the animation
+        mAnimator.removeCallbacksAndMessages(null);
+    }
+
+    private Handler mAnimator = new Handler();
+    private int mLevel = 0;
+    @Override
+    public void run() {
+        mLevel = (mLevel += 25) % 10000;
+        mImageFive.setImageLevel(mLevel);
+
+        mAnimator.postDelayed(this, 10);
     }
 
     private void loadDrawables() {
@@ -104,6 +134,16 @@ public class MyActivity extends Activity {
         //Apply to two ImageViews with different scale types
         mImageThree.setImageDrawable(d);
         mImageFour.setImageDrawable(d);
+
+        /*
+         * Wrap a simple TextDrawable in a ClipDrawable to animate.  One convenient
+         * advantage of ImageView is we can call setLevel() on the view itself to affect
+         * the Drawable content.
+         */
+        d = new TextDrawable(this);
+        d.setText("SHOW ME TEXT");
+        ClipDrawable clip = new ClipDrawable(d, Gravity.LEFT, ClipDrawable.HORIZONTAL);
+        mImageFive.setImageDrawable(clip);
 
         /*
          * Construct a simple TextDrawable to act as a static prefix

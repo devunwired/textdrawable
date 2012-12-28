@@ -9,12 +9,12 @@
         <ImageView
             android:id="@+id/image1"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:scaleType="center"/>
         <ImageView
             android:id="@+id/image2"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:scaleType="centerCrop"/>
     </TableRow>
 
@@ -22,14 +22,20 @@
         <ImageView
             android:id="@+id/image3"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:scaleType="center" />
         <ImageView
             android:id="@+id/image4"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:scaleType="fitCenter" />
     </TableRow>
+
+    <ImageView
+        android:id="@+id/image5"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter" />
 
     <EditText
         android:id="@+id/edittext1"
