@@ -43,6 +43,7 @@ public class MyActivity extends Activity {
          */
         TextDrawable d = new TextDrawable(this);
         d.setText("SAMPLE TEXT\nLINE TWO");
+        d.setTextAlign(Layout.Alignment.ALIGN_CENTER);
         //Apply to two ImageViews with different scale types
         mImageOne.setImageDrawable(d);
         mImageTwo.setImageDrawable(d);

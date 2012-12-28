@@ -330,6 +330,9 @@ public class TextDrawable extends Drawable {
                     mTextAlignment, 1.0f, 0.0f, false);
             mTextBounds.set(0, 0, mTextLayout.getWidth(), mTextLayout.getHeight());
         }
+
+        //We may need to be redrawn
+        invalidateSelf();
     }
 
     /**
