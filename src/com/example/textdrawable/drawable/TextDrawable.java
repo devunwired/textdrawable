@@ -1,3 +1,26 @@
+/**
+ * Copyright (c) 2012 Wireless Designs, LLC
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 package com.example.textdrawable.drawable;
 
 import android.content.Context;
@@ -18,11 +41,17 @@ import android.text.TextPaint;
 import android.util.TypedValue;
 
 /**
- * Created by Dave Smith
- * Xcellent Creations, Inc.
- * Date: 12/19/12
- * TextDrawable
- * Drawable that draws text
+ * A Drawable object that draws text.
+ * A TextDrawable accepts most of the same parameters that can be applied to
+ * {@link android.widget.TextView} for displaying and formatting text.
+ *
+ * Optionally, a {@link Path} may be supplied on which to draw the text.
+ *
+ * A TextDrawable has an intrinsic size equal to that required to draw all
+ * the text it has been supplied, when possible.  In cases where a {@link Path}
+ * has been supplied, the caller must explicitly call
+ * {@link #setBounds(android.graphics.Rect) setBounds()} to provide the Drawable
+ * size based on the Path constraints.
  */
 public class TextDrawable extends Drawable {
 
