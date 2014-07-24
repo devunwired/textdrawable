@@ -420,10 +420,9 @@ public class TextDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        int x = bounds.left;
-        int y = bounds.top;
-        canvas.translate(x, y);
+        Rect rect = getBounds();
+        int count = canvas.save();
+        canvas.translate(rect.left, rect.top);
         if (mTextPath == null) {
             //Allow the layout to draw the text
             mTextLayout.draw(canvas);
@@ -431,7 +430,7 @@ public class TextDrawable extends Drawable {
             //Draw directly on the canvas using the supplied path
             canvas.drawTextOnPath(mText.toString(), mTextPath, 0, 0, mTextPaint);
         }
-        canvas.translate(-x, -y);
+        canvas.restoreToCount(count);
     }
 
     @Override
