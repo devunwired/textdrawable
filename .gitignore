@@ -5,9 +5,11 @@
 bin/
 gen/
 out/
+build/
 
 #IntelliJ Files
 .idea/
+.gradle
 *.iml
 
 #Eclipse Files
