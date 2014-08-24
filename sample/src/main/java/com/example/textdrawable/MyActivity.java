@@ -27,23 +27,27 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Layout;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import com.example.textdrawable.drawable.TextDrawable;
 
 public class MyActivity extends Activity implements Runnable {
     //Row One
-    ImageView mImageOne, mImageTwo;
+    ImageView mTwoLineOne, mTwoLineTwo;
     //Row Two
-    ImageView mImageThree, mImageFour;
+    ImageView mPathOne, mPathTwo;
     //Row Three
-    ImageView mImageFive;
+    ImageView mCompoundOne, mCompoundTwo;
+    //Row Four
+    ImageView mAnimatedText;
     //Row Four
     EditText mEditText;
     //Row Five
@@ -54,11 +58,13 @@ public class MyActivity extends Activity implements Runnable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        mImageOne = (ImageView) findViewById(R.id.image1);
-        mImageTwo = (ImageView) findViewById(R.id.image2);
-        mImageThree = (ImageView) findViewById(R.id.image3);
-        mImageFour = (ImageView) findViewById(R.id.image4);
-        mImageFive = (ImageView) findViewById(R.id.image5);
+        mTwoLineOne = (ImageView) findViewById(R.id.image1);
+        mTwoLineTwo = (ImageView) findViewById(R.id.image2);
+        mPathOne = (ImageView) findViewById(R.id.image3);
+        mPathTwo = (ImageView) findViewById(R.id.image4);
+        mCompoundOne = (ImageView) findViewById(R.id.image5);
+        mCompoundTwo = (ImageView) findViewById(R.id.image6);
+        mAnimatedText = (ImageView) findViewById(R.id.image7);
         mEditText = (EditText) findViewById(R.id.edittext1);
         mButton = (Button) findViewById(R.id.button1);
 
@@ -84,7 +90,7 @@ public class MyActivity extends Activity implements Runnable {
     @Override
     public void run() {
         mLevel = (mLevel += 25) % 10000;
-        mImageFive.setImageLevel(mLevel);
+        mAnimatedText.setImageLevel(mLevel);
 
         mAnimator.postDelayed(this, 10);
     }
@@ -98,8 +104,8 @@ public class MyActivity extends Activity implements Runnable {
         d.setText("SAMPLE TEXT\nLINE TWO");
         d.setTextAlign(Layout.Alignment.ALIGN_CENTER);
         //Apply to two ImageViews with different scale types
-        mImageOne.setImageDrawable(d);
-        mImageTwo.setImageDrawable(d);
+        mTwoLineOne.setImageDrawable(d);
+        mTwoLineTwo.setImageDrawable(d);
 
         /*
          * Create a second TextDrawable with a path applied.
@@ -121,19 +127,30 @@ public class MyActivity extends Activity implements Runnable {
          * We are using complex units so the values scale appropriately to different displays
          */
         Path p = new Path();
-        int origin = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                40, getResources().getDisplayMetrics());
-        int radius = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                30, getResources().getDisplayMetrics());
-        int bound = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                80, getResources().getDisplayMetrics());
+        int origin = getResources().getDimensionPixelOffset(R.dimen.path_origin);
+        int radius = getResources().getDimensionPixelOffset(R.dimen.path_radius);
+        int bound = getResources().getDimensionPixelOffset(R.dimen.path_bound);
         p.addCircle(origin, origin, radius, Path.Direction.CW);
         d.setTextPath(p);
         //Must call setBounds() since we are using a Path
         d.setBounds(0, 0, bound, bound);
         //Apply to two ImageViews with different scale types
-        mImageThree.setImageDrawable(d);
-        mImageFour.setImageDrawable(d);
+        mPathOne.setImageDrawable(d);
+        mPathTwo.setImageDrawable(d);
+
+        /*
+         * Create a compound drawable with TextDrawable and a shape. Since TextDrawable
+         * is a non-framework class, we can't do this purely in XML. The example also
+         * includes adding insets to the text over the shape.
+         */
+        d = new TextDrawable(this);
+        d.setText("LAYER\nTEXT");
+        Drawable background = getResources().getDrawable(R.drawable.background);
+        LayerDrawable container = new LayerDrawable(new Drawable[] {background, d});
+        int inset = getResources().getDimensionPixelOffset(R.dimen.layer_inset);
+        container.setLayerInset(1, inset, inset, inset, inset);
+        mCompoundOne.setImageDrawable(container);
+        mCompoundTwo.setImageDrawable(container);
 
         /*
          * Wrap a simple TextDrawable in a ClipDrawable to animate.  One convenient
@@ -143,7 +160,7 @@ public class MyActivity extends Activity implements Runnable {
         d = new TextDrawable(this);
         d.setText("SHOW ME TEXT");
         ClipDrawable clip = new ClipDrawable(d, Gravity.LEFT, ClipDrawable.HORIZONTAL);
-        mImageFive.setImageDrawable(clip);
+        mAnimatedText.setImageDrawable(clip);
 
         /*
          * Construct a simple TextDrawable to act as a static prefix

@@ -1,55 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:stretchColumns="*"
-    android:padding="5dp">
+    android:layout_height="match_parent">
 
-    <TableRow>
-        <ImageView
-            android:id="@+id/image1"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:scaleType="center"/>
-        <ImageView
-            android:id="@+id/image2"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:scaleType="centerCrop"/>
-    </TableRow>
-
-    <TableRow>
-        <ImageView
-            android:id="@+id/image3"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:scaleType="center" />
-        <ImageView
-            android:id="@+id/image4"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:scaleType="fitCenter" />
-    </TableRow>
-
-    <ImageView
-        android:id="@+id/image5"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:scaleType="fitCenter" />
-
-    <EditText
-        android:id="@+id/edittext1"
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:digits="0123456789"
-        android:imeOptions="actionDone"/>
+        android:padding="16dp"
+        android:stretchColumns="*">
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Click Me" />
+        <TableRow>
 
-</TableLayout>
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="center"/>
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"/>
+        </TableRow>
+
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="center"/>
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="fitCenter"/>
+        </TableRow>
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/image5"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="center"/>
+
+            <ImageView
+                android:id="@+id/image6"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="fitCenter"/>
+        </TableRow>
+
+
+        <ImageView
+            android:id="@+id/image7"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"/>
+
+        <EditText
+            android:id="@+id/edittext1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="0123456789"
+            android:imeOptions="actionDone"
+            android:inputType="phone"/>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Click Me"/>
+    </TableLayout>
+</ScrollView>
 
