@@ -1,16 +1,16 @@
-#TextDrawable#
+# TextDrawable #
 
 This repository contains an implementation of `TextDrawable` enclosed within a sample project demonstrating its use.  `TextDrawable` is a Drawable object used to display text content and is intended for use on the Android mobile platform.
 
-##Usage##
+## Usage ##
 
 For a specific discussion of how `TextDrawable` can be used, please refer to [this blog post] [1].
 
-##Contribution##
+## Contribution ##
 
 If you have additions or changes you would like to see made to this implementation, please feel free to fork the repository and submit a pull request.
 
-##License##
+## License ##
 
 **The code supplied here is covered under the MIT Open Source License:**
 
